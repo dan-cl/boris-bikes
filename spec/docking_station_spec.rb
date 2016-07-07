@@ -16,7 +16,7 @@ describe DockingStation do
   describe '#initialize' do
 
   subject { DockingStation.new}
-  let(:bike) {Bike.new}
+  let(:bike) {double(:bike)}
 
    it 'has a variable capacity' do
      docking_station = DockingStation.new(50)
@@ -36,7 +36,7 @@ describe DockingStation do
   end
 
   describe '#release_bike' do
-    let(:bike) { Bike.new }
+    let(:bike) { double(:bike) }
     it 'releases a bike' do
       subject.dock(bike)
       expect(subject.release_bike).to eq bike
@@ -57,13 +57,13 @@ describe DockingStation do
    describe '#dock' do
 
      it 'docks something' do
-       bike = Bike.new
+       bike = double(:bike)
        expect(subject.dock(bike)).to eq [bike]
       end
 
      it 'raises an error when full' do
-       subject.capacity.times {subject.dock(Bike.new)}
-       expect { subject.dock Bike.new }.to raise_error("Docking station full")
+       subject.capacity.times {subject.dock(double(:bike))}
+       expect { subject.dock double(:bike) }.to raise_error("Docking station full")
      end
 
 
