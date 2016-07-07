@@ -36,8 +36,9 @@ describe DockingStation do
   end
 
   describe '#release_bike' do
-    let(:bike) { double(:bike) }
-    it 'releases a bike' do
+    bike = double("bike", :working? => true)
+    broken_bike = double("bike", :working? => false)
+      it 'releases a bike' do
       subject.dock(bike)
       expect(subject.release_bike).to eq bike
     end
@@ -47,8 +48,7 @@ describe DockingStation do
     end
 
     it 'will not release broken bike' do
-      bike.broken
-      subject.dock(bike)
+      subject.dock(broken_bike)
       expect{subject.release_bike}.to raise_error ('Bike is broken')
     end
 
