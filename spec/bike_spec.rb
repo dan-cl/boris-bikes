@@ -10,7 +10,8 @@ describe Bike do
       expect(bike.working?).to be true
     end
     it 'confirms when bike is broken' do
-      expect((bike.broken).working?).to be false
+      bike.broken
+      expect(bike.working?).to be false
     end
   end
 
@@ -18,8 +19,7 @@ describe Bike do
   describe '#broken' do
     let(:bike) {Bike.new}
     it 'flags bike as broken' do
-      bike.broken
-
+      expect(bike.broken).to be false
       end
     end
 
