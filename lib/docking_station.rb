@@ -4,7 +4,6 @@ class DockingStation
 
 def initialize
   @bikes = []
-
 end
 
 
@@ -14,10 +13,15 @@ end
  end
 
  def dock(bike)
-   fail "Docking station full" if @bikes.length == 20
+   fail "Docking station full" if full?
   @bikes << bike
  end
 
  attr_reader :bikes
 
+ private
+
+ def full?
+   @bikes.length >= 20
+ end
 end
